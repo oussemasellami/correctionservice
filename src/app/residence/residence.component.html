@@ -1,0 +1,81 @@
+<br />
+<br />
+<button (click)="redirect()">redirect to form</button>
+<br />
+<br />
+<table border="3">
+  <tr>
+    <td>id</td>
+    <td>nom</td>
+    <td>adress</td>
+    <td>image</td>
+    <td>Appartment</td>
+  </tr>
+  <tr *ngFor="let r of listResidences">
+    <td>{{ r.id }}</td>
+    <td>{{ r.name }}</td>
+    <td>{{ r.address }}</td>
+    <td><img [src]="r.image" width="100" height="100" /></td>
+    <td>
+      <ul>
+        <div *ngFor="let a of listApartments">
+          <div *ngIf="r == a.residence">
+            <li>
+              {{ a.surface }}
+            </li>
+          </div>
+        </div>
+      </ul>
+    </td>
+  </tr>
+</table>
+<hr />
+filter selon button
+<hr />
+<select name="residence" [(ngModel)]="selectedresidence">
+  <option *ngFor="let r of listResidences" [value]="r.id">
+    {{ r.name }}
+  </option>
+</select>
+<br />
+<button (click)="showappart(selectedresidence)">show appartment</button>
+<ul>
+  <div *ngFor="let s of selectedlist">
+    <li><b>id:</b>{{ s.id }}</li>
+  </div>
+</ul>
+
+<hr />
+recherche avec surface:<input type="text" [(ngModel)]="searchsurface" />
+<ul>
+  <div *ngFor="let s of listApartments">
+    <div *ngIf="s.surface <= searchsurface"><b>id:</b>{{ s.id }}</div>
+  </div>
+</ul>
+
+<hr />
+test databinding
+<hr />
+interpolation:
+{{ test }}
+
+<hr />
+proprty binding
+<hr />
+<button [disabled]="prop">save</button>
+<hr />
+event binding
+<hr />
+<button (click)="show()">save</button>
+{{ message }}
+<hr />
+to way data binding
+<hr />
+<input type="text" [(ngModel)]="message" />
+{{ message }}
+<br />
+<button class="btn btn-primary" (click)="sommecreteria()">
+  show with creteria
+</button>
+
+<div>la somme est : {{ somme }}</div>
